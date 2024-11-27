@@ -10,6 +10,8 @@ import hashlib
 from urllib.parse import unquote, quote
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_cors import CORS
+
 
 app = Flask(__name__)
 CORS(app)
