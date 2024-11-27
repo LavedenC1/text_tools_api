@@ -248,7 +248,7 @@ def decode_url():
     text = request.form.get('text')
     return jsonify({'result': unquote(text)})
 @app.route('/')
-def index:
+def index():
     return "Hello, World!"
 
 if __name__ == '__main__':
