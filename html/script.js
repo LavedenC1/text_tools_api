@@ -1,6 +1,6 @@
 function textLength() {
-    const url = "http://0.0.0.0/api/length"; // Replace with your API URL
-    const data = { text: document.getElementById("text").value }; // Replace with your data payload
+    const url = "https://curious-deane-losbaguettesdeliban-13a647bd.koyeb.app/api/length";
+    const data = { text: document.getElementById("text").value };
 
     fetch(url, {
         method: "POST",
@@ -13,11 +13,11 @@ function textLength() {
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
-            return response.json(); // Parse JSON response
+            return response.json();
         })
         .then(data => {
             // Set the output to the input element
-            document.getElementById("output").value = data.result; // Adjust based on the API response structure
+            document.getElementById("output").value = data;
         })
         .catch(error => {
             console.error("Error:", error);
