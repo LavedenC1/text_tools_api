@@ -24,15 +24,15 @@
                 Text
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item fw-bold" href="#">Text Length</a></li>
-                <li><a class="dropdown-item" href="#">Reverse Text</a></li>
-                <li><a class="dropdown-item" href="#">Shuffle Text</a></li>
-                <li><a class="dropdown-item" href="#">Uppercase/Lowercase</a></li>
-                <li><a class="dropdown-item" href="#">Reverse Case</a></li>
-                <li><a class="dropdown-item" href="#">Find/Replace</a></li>
-                <li><a class="dropdown-item" href="#">Word Frequency</a></li>
-                <li><a class="dropdown-item" href="#">Remove Punctuation</a></li>
-                <li><a class="dropdown-item" href="#">Remove Duplicate Lines</a></li>
+                <li><a class="dropdown-item fw-bold" href="/text/length.html">Text Length</a></li>
+                <li><a class="dropdown-item" href="/text/reverse.html">Reverse Text</a></li>
+                <li><a class="dropdown-item" href="/text/shuffle.html">Shuffle Text</a></li>
+                <li><a class="dropdown-item" href="/text/case.html">Uppercase/Lowercase</a></li>
+                <li><a class="dropdown-item" href="/text/rcase.html">Reverse Case</a></li>
+                <li><a class="dropdown-item" href="/text/replace.html">Find/Replace</a></li>
+                <li><a class="dropdown-item" href="/text/frequency.html">Word Frequency</a></li>
+                <li><a class="dropdown-item" href="/text/punctuation.html">Remove Punctuation</a></li>
+                <li><a class="dropdown-item" href="/text/duplicates.html">Remove Duplicate Lines</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -40,15 +40,15 @@
                 Encryption
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Base64 Encode/Decode</a></li>
-                <li><a class="dropdown-item" href="#">Binary Encode/Decode</a></li>
-                <li><a class="dropdown-item" href="#">Hex Encode/Decode</a></li>
-                <li><a class="dropdown-item" href="#">URL Encode/Decode</a></li>
-                <li><a class="dropdown-item" href="#">Caesar Cipher</a></li>
-                <li><a class="dropdown-item" href="#">MD5 Hasher</a></li>
-                <li><a class="dropdown-item" href="#">SHA1 Hasher</a></li>
-                <li><a class="dropdown-item" href="#">SHA256 Hasher</a></li>
-                <li><a class="dropdown-item" href="#">Bcrypt Hasher</a></li>
+                <li><a class="dropdown-item" href="/encryption/base64.html">Base64 Encode/Decode</a></li>
+                <li><a class="dropdown-item" href="/encryption/binary.html">Binary Encode/Decode</a></li>
+                <li><a class="dropdown-item" href="/encryption/hex.html">Hex Encode/Decode</a></li>
+                <li><a class="dropdown-item" href="/encryption/url.html">URL Encode/Decode</a></li>
+                <li><a class="dropdown-item" href="/encryption/caesar.html">Caesar Cipher</a></li>
+                <li><a class="dropdown-item" href="/encryption/md5.html">MD5 Hasher</a></li>
+                <li><a class="dropdown-item" href="/encryption/sha1.html">SHA1 Hasher</a></li>
+                <li><a class="dropdown-item" href="/encryption/sha256.html">SHA256 Hasher</a></li>
+                <li><a class="dropdown-item" href="/encryption/bcrypt.html">Bcrypt Hasher</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -56,10 +56,10 @@
                 Scraping
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">URL Extractor</a></li>
-                <li><a class="dropdown-item" href="#">Email Extractor</a></li>
-                <li><a class="dropdown-item" href="#">Phone Number Extractor</a></li>
-                <li><a class="dropdown-item" href="#">Regex Finder</a></li>
+                <li><a class="dropdown-item" href="/scraping/url.html">URL Extractor</a></li>
+                <li><a class="dropdown-item" href="/scraping/email.html">Email Extractor</a></li>
+                <li><a class="dropdown-item" href="/scraping/phone.html">Phone Number Extractor</a></li>
+                <li><a class="dropdown-item" href="/scraping/regex.html">Regex Finder</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -67,7 +67,7 @@
                 Other
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Password Generator</a></li>
+                <li><a class="dropdown-item" href="/other/password.html">Password Generator</a></li>
                 <li><a class="dropdown-item" href="https://hashcracker.us.to">Hash Cracker</a></li>
               </ul>
             </li>
@@ -87,15 +87,16 @@
       </div>
       <h2>Text Length</h2>
       <hr>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-1 g-3">
+      <div class="row row-cols-1 row-cols-md-1 row-cols-lg-1 g-3">
         <div class="col">
           <div class="card h-100">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Input Text</h5>
               <textarea class="form-control" style="height: 300px;" placeholder="Enter your input text..." id="text"></textarea>
-              <button class="btn btn-outline-primary mt-100" onclick="textLength()">Submit</button><br>
+              <button class="btn btn-outline-primary mt-100" id="submitButton" onclick="textLength()">Submit</button><br>
               <h5 class="card-title">Output Text</h5>
               <textarea class="form-control" style="height: 300px;" placeholder="Output" id="output" readonly></textarea>
+              <button class="btn btn-outline-primary mt-100" id="copyButton" onclick="copyOutput()">Copy Output</button>
             </div>
           </div>
         </div>

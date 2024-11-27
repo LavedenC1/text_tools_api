@@ -2,7 +2,6 @@ import codecs
 import random
 import re
 import bcrypt
-from functions import *
 from flask import Flask, request, render_template, jsonify
 import string
 import base64
@@ -25,8 +24,8 @@ limiter = Limiter(
 @app.route('/api/reverse', methods=['POST'])
 def reverse_text():
     text = request.form.get('text')
-    reversed_text = reverse(text)
-    return jsonify({'result': reversed_text})
+    reversed_text = [x[::-1] for x in text.splitlines()]
+    return jsonify({'result': '\n'.join(reversed_text)})
 
 # Reverse Case Route
 @app.route('/api/reverse_case', methods=['POST'])
@@ -250,6 +249,13 @@ def encode_url():
 def decode_url():
     text = request.form.get('text')
     return jsonify({'result': unquote(text)})
+
+@app.route("/api")
+def api():
+    return """
+Wait for it
+    """
+
 @app.route('/')
 def index():
     return "Hello, World!"
