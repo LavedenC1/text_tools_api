@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Text Tools</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">TextTools</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Text
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Text Length</a></li>
+                <li><a class="dropdown-item" href="#">Reverse Text</a></li>
+                <li><a class="dropdown-item" href="#">Shuffle Text</a></li>
+                <li><a class="dropdown-item" href="#">Uppercase/Lowercase</a></li>
+                <li><a class="dropdown-item" href="#">Reverse Case</a></li>
+                <li><a class="dropdown-item" href="#">Find/Replace</a></li>
+                <li><a class="dropdown-item" href="#">Word Frequency</a></li>
+                <li><a class="dropdown-item" href="#">Remove Punctuation</a></li>
+                <li><a class="dropdown-item" href="#">Remove Duplicate Lines</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Encryption
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Base64 Encode/Decode</a></li>
+                <li><a class="dropdown-item" href="#">Binary Encode/Decode</a></li>
+                <li><a class="dropdown-item" href="#">Hex Encode/Decode</a></li>
+                <li><a class="dropdown-item" href="#">URL Encode/Decode</a></li>
+                <li><a class="dropdown-item" href="#">Caesar Cipher</a></li>
+                <li><a class="dropdown-item" href="#">MD5 Hasher</a></li>
+                <li><a class="dropdown-item" href="#">SHA1 Hasher</a></li>
+                <li><a class="dropdown-item" href="#">SHA256 Hasher</a></li>
+                <li><a class="dropdown-item" href="#">Bcrypt Hasher</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Scraping
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">URL Extractor</a></li>
+                <li><a class="dropdown-item" href="#">Email Extractor</a></li>
+                <li><a class="dropdown-item" href="#">Phone Number Extractor</a></li>
+                <li><a class="dropdown-item" href="#">Regex Finder</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Other
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Password Generator</a></li>
+                <li><a class="dropdown-item" href="https://hashcracker.us.to">Hash Cracker</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-4">
+      <div class="heading">
+        <div class="text-center" style="width: 200px; margin: auto;">
+          <h1 class="my-3 py-2">Text Tools</h1>
+        </div>
+      </div>
+      <h2>Text</h2>
+      <hr>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-3">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Text Length</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → 5</code></h6>
+              <p class="card-text">Find the length of text based on user input.</p>
+              <button class="btn btn-outline-primary mt-auto" onclick="location.href = '/tools/length.html';">Text Length</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Reverse Text</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → olleh</code></h6>
+              <p class="card-text">Reverses the input's text to reverse it.</p>
+              <button class="btn btn-outline-primary mt-auto">Reverse Text</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Shuffle Text</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → olehl</code></h6>
+              <p class="card-text">Randomly shuffles the input text, can make anagrams.</p>
+              <button class="btn btn-outline-primary mt-auto">Shuffle Text</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Upper/Lower Case</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>heY → HEY or HEY</code></h6>
+              <p class="card-text">Changes text to lowercase or uppercase.</p>
+              <button class="btn btn-outline-primary mt-auto">Change Case</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Reverse Case</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>HeLLo → hEllO</code></h6>
+              <p class="card-text">Reverses the case of each character in the text.</p>
+              <button class="btn btn-outline-primary mt-auto">Reverse Case</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Find/Replace</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>(l → p)hello → heppo</code></h6>
+              <p class="card-text">Finds and Replaces characters or phrases.</p>
+              <button class="btn btn-outline-primary mt-auto">Find/Replace</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Word Frequency</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → {hello:1}</code></h6>
+              <p class="card-text">Finds how many words are in the input text.</p>
+              <button class="btn btn-outline-primary mt-auto">Word Frequency</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Remove Punctuation</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>h.e.llo! → hello</code></h6>
+              <p class="card-text">Removes punctuation from input text.</p>
+              <button class="btn btn-outline-primary mt-auto">Remove Punctuation</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Remove Duplicate Lines</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hi \n hi → hi</code></h6>
+              <p class="card-text">Finds and removes duplicate lines.</p>
+              <button class="btn btn-outline-primary mt-auto">Remove Lines</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="mt-4">Encryption</h2>
+      <hr>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-3">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Convert Base64</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → aGVsbG8=</code></h6>
+              <p class="card-text">Encodes or decodes a string to base64.</p>
+              <button class="btn btn-outline-primary mt-auto">Convert Base64</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Convert Binary</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → 01101...</code></h6>
+              <p class="card-text">Encodes or decodes a string to binary.</p>
+              <button class="btn btn-outline-primary mt-auto">Convert Binary</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Convert Hex</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → 68656c...</code></h6>
+              <p class="card-text">Encodes or decodes a string to hexadecimal.</p>
+              <button class="btn btn-outline-primary mt-auto">Convert Hex</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Convert URL</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>im a → im%20a</code></h6>
+              <p class="card-text">Encodes or decodes a string to URL-Encoded.</p>
+              <button class="btn btn-outline-primary mt-auto">Convert URL</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Caesar Cipher</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → ifmmp</code></h6>
+              <p class="card-text">Shifts letters in a string to cipher them.</p>
+              <button class="btn btn-outline-primary mt-auto">Ceasar Cipher</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">MD5 Hasher</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → 5d414...</code></h6>
+              <p class="card-text">Hashes a string in the MD5 Algorithm</p>
+              <button class="btn btn-outline-primary mt-auto">MD5 Hasher</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">SHA1 Hasher</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → aaf4c...</code></h6>
+              <p class="card-text">Hashes a string in the SHA1 Algorithm</p>
+              <button class="btn btn-outline-primary mt-auto">SHA1 Hasher</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">SHA256 Hasher</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → 2cf24...</code></h6>
+              <p class="card-text">Hashes a string in the SHA256 Algorithm</p>
+              <button class="btn btn-outline-primary mt-auto">SHA256 Hasher</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Bcrypt Hasher</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>hello → $2a$1...</code></h6>
+              <p class="card-text">Hashes a string in the Bcrypt Algorithm</p>
+              <button class="btn btn-outline-primary mt-auto">Bcrypt Hasher</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="mt-4">Scraping</h2>
+      <hr>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-3">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">URL Extractor</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>* a.com * → a.com</code></h6>
+              <p class="card-text">Extracts URLs from text.</p>
+              <button class="btn btn-outline-primary mt-auto">URL Extractor</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Email Extractor</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>* a@a.com * → a@a...</code></h6>
+              <p class="card-text">Extracts emails from text.</p>
+              <button class="btn btn-outline-primary mt-auto">Email Extractor</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Phone Extractor</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>* 818... * → 818...</code></h6>
+              <p class="card-text">Extracts phone numbers from text.</p>
+              <button class="btn btn-outline-primary mt-auto">Phone Extractor</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Regex Finder</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>(l)hello → ll</code></h6>
+              <p class="card-text">Uses a regex pattern to extract text.</p>
+              <button class="btn btn-outline-primary mt-auto">Regex Finder</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="mt-4">Other</h2>
+      <hr>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-3">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Password Generator</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>a%dsji!...</code></h6>
+              <p class="card-text">Generate a custom and secure password.</p>
+              <button class="btn btn-outline-primary mt-auto">Password Generator</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Hash Cracker</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary"><code>check it out!</code></h6>
+              <p class="card-text">Can crack MD5, SHA1, SHA256, and Bcrypt! Free!</p>
+              <button class="btn btn-outline-primary mt-auto" onclick="location.href = 'https://hashcracker.us.to';">Hash Cracker</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><br>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
