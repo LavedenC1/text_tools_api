@@ -137,12 +137,22 @@ def caesar_cipher():
 
 # Remove duplicate lines route
 @app.route('/api/remove_duplicates', methods=['POST'])
+from flask import request, jsonify
+
 def remove_duplicates():
     text = request.form.get('text')
-    lines = text.split('\n')
-    unique_lines = list(set(lines))
+    lines = text.split('\n')    
+    seen = set()
+    unique_lines = []
+    
+    for line in lines:
+        if line not in seen:
+            unique_lines.append(line)
+            seen.add(line)    
     reversed_text = '\n'.join(unique_lines)
+    
     return jsonify({'result': reversed_text})
+
 
 # Word frequency counter route
 @app.route('/api/word_frequency', methods=['POST'])

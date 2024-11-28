@@ -10,6 +10,13 @@ async function c_buttonSuccess() {
     document.getElementById("copyButton").className = "btn btn-outline-primary mt-100";
 }
 
+async function c_buttonFailed() {
+    document.getElementById("copyButton").className = "btn btn-danger mt-100";
+    await sleep(1500);
+    document.getElementById("copyButton").className = "btn btn-outline-primary mt-100";
+}
+
+
 async function s_buttonSuccess() {
     document.getElementById("submitButton").className = "btn btn-success mt-100";
     await sleep(1500);
@@ -21,6 +28,20 @@ async function s_buttonFailed() {
     await sleep(1500);
     document.getElementById("submitButton").className = "btn btn-outline-primary mt-100";
 }
+
+async function s2_buttonSuccess() {
+    document.getElementById("submitButton2").className = "btn btn-success mt-100";
+    await sleep(1500);
+    document.getElementById("submitButton2").className = "btn btn-outline-primary mt-100";
+}
+
+async function s2_buttonFailed() {
+    document.getElementById("submitButton2").className = "btn btn-danger mt-100";
+    await sleep(1500);
+    document.getElementById("submitButton2").className = "btn btn-outline-primary mt-100";
+}
+
+
 
 async function callAPI(url, inputDATA) {
     try {
@@ -48,11 +69,33 @@ async function callAPI(url, inputDATA) {
 function copyOutput() {
     // Source: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
     var copyText = document.getElementById("output");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(copyText.value);
-
-    c_buttonSuccess();
+    if (copyText) {
+        if (copyText.tagName === "INPUT" || copyText.tagName === "TEXTAREA") {
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+        } else {
+            const range = document.createRange();
+            const selection = window.getSelection();
+            range.selectNodeContents(copyText);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+        try {
+            navigator.clipboard.writeText(copyText.value || copyText.textContent).then(() => {
+                c_buttonSuccess();
+            }).catch(err => {
+                c_buttonFailed();
+                console.error("Failed to copy text:", err);
+            });
+        } catch (error) {
+            c_buttonFailed();
+            alert("If the copy function keeps failing, try using https...")
+            console.error("Clipboard API not supported:", error);
+        }
+    } else {
+        c_buttonFailed();
+        console.error("Output element not found.");
+    }
 }
 
 async function textLength() {
@@ -66,7 +109,8 @@ async function textLength() {
         document.getElementById("output").value = data.result;
     } else {
         s_buttonFailed();
-        document.getElementById("output").value = "Error fetching data.";
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
     }
 }
 
@@ -80,8 +124,144 @@ async function reverseText() {
         s_buttonSuccess();
         document.getElementById("output").value = data.result;
     } else {
-        console.error("Error:", error);
         s_buttonFailed();
-        document.getElementById("output").value = "Error fetching data.";
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function shuffleText() {
+    const url = `${base}/shuffle`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+
+async function ucase() {
+    const url = `${base}/uppercase`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function lcase() {
+    const url = `${base}/lowercase`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s2_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s2_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function reverseCase() {
+    const url = `${base}/reverse_case`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function findReplace() {
+    const url = `${base}/find_replace`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+    formData.append("find", document.getElementById("tofind").value);
+    formData.append("replace", document.getElementById("toreplace").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function wordFrequency() {
+    const url = `${base}/word_frequency`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        let outputText = '';
+        const result = data.result;
+        for (const key in result) {
+            outputText += `${key}: ${result[key]}\n`; // Append each line to the outputText string
+        }
+        s_buttonSuccess();
+        document.getElementById("output").value = outputText;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function removePunctuation() {
+    const url = `${base}/remove_punctuation`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function removeDuplicates() {
+    const url = `${base}/remove_duplicates`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
     }
 }

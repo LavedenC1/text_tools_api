@@ -24,7 +24,7 @@
                 Text
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item fw-bold" href="/text/length.html">Text Length</a></li>
+                <li><a class="dropdown-item" href="/text/length.html">Text Length</a></li>
                 <li><a class="dropdown-item" href="/text/reverse.html">Reverse Text</a></li>
                 <li><a class="dropdown-item" href="/text/shuffle.html">Shuffle Text</a></li>
                 <li><a class="dropdown-item" href="/text/case.html">Uppercase/Lowercase</a></li>
@@ -32,7 +32,7 @@
                 <li><a class="dropdown-item" href="/text/replace.html">Find/Replace</a></li>
                 <li><a class="dropdown-item" href="/text/frequency.html">Word Frequency</a></li>
                 <li><a class="dropdown-item" href="/text/punctuation.html">Remove Punctuation</a></li>
-                <li><a class="dropdown-item" href="/text/duplicates.html">Remove Duplicate Lines</a></li>
+                <li><a class="dropdown-item fw-bold" href="/text/duplicates.html">Remove Duplicate Lines</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -85,7 +85,7 @@
           <h1 class="my-3 py-2">Text Tools</h1>
         </div>
       </div>
-      <h2>Text Length</h2>
+      <h2>Remove Duplicate Lines</h2>
       <hr>
       <div class="row row-cols-1 row-cols-md-1 row-cols-lg-1 g-3">
         <div class="col">
@@ -93,7 +93,7 @@
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Input Text</h5>
               <textarea class="form-control" style="height: 300px;" placeholder="Enter your input text..." id="text"></textarea>
-              <button class="btn btn-outline-primary mt-100" id="submitButton" onclick="textLength()">Submit</button><br>
+              <button class="btn btn-outline-primary mt-100" id="submitButton" onclick="removeDuplicates()">Submit</button><br>
               <h5 class="card-title">Output Text</h5>
               <textarea class="form-control" style="height: 300px;" placeholder="Output" id="output" readonly></textarea>
               <button class="btn btn-outline-primary mt-100" id="copyButton" onclick="copyOutput()">Copy Output</button>
