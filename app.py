@@ -137,8 +137,6 @@ def caesar_cipher():
 
 # Remove duplicate lines route
 @app.route('/api/remove_duplicates', methods=['POST'])
-from flask import request, jsonify
-
 def remove_duplicates():
     text = request.form.get('text')
     lines = text.split('\n')    
