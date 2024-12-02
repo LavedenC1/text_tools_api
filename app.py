@@ -104,8 +104,7 @@ def extract_regex():
     text = request.form.get('text')
     pattern = request.form.get('pattern')
     matches = re.findall(pattern, text)
-    reversed_text =''.join(matches)
-    return jsonify({'result': reversed_text})
+    return jsonify({'result': matches})
 
 # Encode base64 route
 @app.route('/api/encode_base64', methods=['POST'])

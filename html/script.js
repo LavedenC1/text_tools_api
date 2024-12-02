@@ -477,3 +477,83 @@ async function bcrypter() {
         console.error("Error:", error);
     }
 }
+
+async function extractUrls() {
+    const url = `${base}/extract_urls`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        let outputText = '';
+        const result = data.result;
+        for (const key in result) {
+            outputText += `${result[key]}\n`; // Append each line to the outputText string
+        }
+        s_buttonSuccess();
+        document.getElementById("output").value = outputText;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function extractEmails() {
+    const url = `${base}/extract_emails`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        let outputText = '';
+        const result = data.result;
+        for (const key in result) {
+            outputText += `${result[key]}\n`; // Append each line to the outputText string
+        }
+        s_buttonSuccess();
+        document.getElementById("output").value = outputText;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function extractPns() {
+    const url = `${base}/extract_pns`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        let outputText = '';
+        const result = data.result;
+        for (const key in result) {
+            outputText += `${result[key]}\n`; // Append each line to the outputText string
+        }
+        s_buttonSuccess();
+        document.getElementById("output").value = outputText;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function regexer() {
+    const url = `${base}/extract_regex`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+    formData.append("pattern", document.getElementById("regexp").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
