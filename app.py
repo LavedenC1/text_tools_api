@@ -192,8 +192,8 @@ def sha1_hash():
 @app.route('/api/bcrypt_hash', methods=['POST'])
 def bcrypt_hash():
     text = request.form.get('text')
-    rounds = request.form.get('rounds')
-    if(rounds > 2 and rounds < 21): 
+    rounds = int(request.form.get('rounds'))
+    if(rounds > 3 and rounds < 21): 
         salt = bcrypt.gensalt(rounds=rounds)
         hashed_text = bcrypt.hashpw(text.encode(), salt)
         return jsonify({'result': hashed_text.decode('utf-8')})
