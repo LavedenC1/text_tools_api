@@ -1,4 +1,5 @@
 const base = "https://curious-deane-losbaguettesdeliban-13a647bd.koyeb.app/api";
+// Yes I am using an API
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -254,6 +255,217 @@ async function removeDuplicates() {
     const url = `${base}/remove_duplicates`;
     const formData = new FormData();
     formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+
+async function base64enc() {
+    const url = `${base}/encode_base64`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function base64dec() {
+    const url = `${base}/decode_base64`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s2_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s2_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function binaryenc() {
+    const url = `${base}/binary_encode`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function binarydec() {
+    const url = `${base}/binary_decode`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s2_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s2_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function hexenc() {
+    const url = `${base}/hex_encode`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function hexdec() {
+    const url = `${base}/hex_decode`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s2_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s2_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function urlenc() {
+    const url = `${base}/encode_url`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function urldec() {
+    const url = `${base}/decode_url`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s2_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s2_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function caesarCipher() {
+    const url = `${base}/caesar_cipher`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+    formData.append("shift", document.getElementById("shift").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function md5er() {
+    const url = `${base}/md5_hash`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function sha1er() {
+    const url = `${base}/sha1_hash`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function sha256er() {
+    const url = `${base}/sha256_hash`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+async function bcrypter() {
+    const url = `${base}/bcrypt_hash`;
+    const formData = new FormData();
+    formData.append("text", document.getElementById("text").value);
+    formData.append("rounds", document.getElementById("rounds").value);
 
     const data = await callAPI(url, formData);
     if (data) {

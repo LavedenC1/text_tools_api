@@ -192,10 +192,10 @@ def sha1_hash():
 @app.route('/api/bcrypt_hash', methods=['POST'])
 def bcrypt_hash():
     text = request.form.get('text')
-    salt = bcrypt.gensalt()
+    rounds = request.form.get('rounds')
+    salt = bcrypt.gensalt(rounds=rounds)
     hashed_text = bcrypt.hashpw(text.encode(), salt)
-    reversed_text = hashed_text.decode('utf-8')
-    return jsonify({'result': reversed_text})
+    return jsonify({'result': hashed_text.decode('utf-8')})
 
 # Password generator route with length, uppercase, lowercase, and special characters options, instead of true and flase, uses 1 and zero
 @app.route('/api/password_generator', methods=['POST'])
