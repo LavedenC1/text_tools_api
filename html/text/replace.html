@@ -94,11 +94,21 @@
               <h5 class="card-title">Input Text</h5>
               <textarea class="form-control" style="height: 300px;" placeholder="Enter your input text..." id="text"></textarea>
               <div class="input-group">
-				<span class="input-group-text">Find</span>
-		        <input type="text" aria-label="find" id="tofind" class="form-control">
-		        <span class="input-group-text">Replace</span>
-                <input type="text" aria-label="replace" id="toreplace" class="form-control">
-			  </div>
+				          <span class="input-group-text">Find</span>
+		              <input type="text" aria-label="find" id="tofind" class="form-control">
+		              <span class="input-group-text">Replace</span>
+                  <input type="text" aria-label="replace" id="toreplace" class="form-control"><br>
+			         </div>
+               <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" id="igcase" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="igcase">Ignore Case</label>
+
+                <input type="checkbox" class="btn-check" id="diatrics" autocomplete="off">
+                <label class="btn btn-outline-primary" for="diatrics">Ignore Diatrics</label>
+
+                <input type="checkbox" class="btn-check" id="expressions" autocomplete="off">
+                <label class="btn btn-outline-primary" for="expressions">Regular Expressions</label>
+              </div>
               <button class="btn btn-outline-primary mt-100" id="submitButton" onclick="findReplace()">Submit</button><br>
               <h5 class="card-title">Output Text</h5>
               <textarea class="form-control" style="height: 300px;" placeholder="Output" id="output" readonly></textarea>

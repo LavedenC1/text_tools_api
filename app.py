@@ -10,7 +10,7 @@ from urllib.parse import unquote, quote
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_cors import CORS
-
+import unicodedata
 
 app = Flask(__name__)
 CORS(app)
@@ -19,6 +19,10 @@ limiter = Limiter(
     key_func=get_remote_address,
     default_limits=["10 per minute"]
 )
+def remove_diacritics(text):
+    # Normalize the text and remove diacritics by using Unicode normalization
+    normalized_text = unicodedata.normalize('NFD', text)
+    return ''.join([c for c in normalized_text if unicodedata.category(c) != 'Mn'])
 
 # Reverse route
 @app.route('/api/reverse', methods=['POST'])
@@ -63,10 +67,21 @@ def get_text_length():
 # Find/replace route
 @app.route('/api/find_replace', methods=['POST'])
 def find_replace():
+    # Get data from the form
     text = request.form.get('text')
     find = request.form.get('find')
     replace = request.form.get('replace')
-    reversed_text = text.replace(find, replace)
+    igcase = request.form.get('igcase') == 'true'
+    diatrics = request.form.get('diatrics') == 'true'
+    expressions = request.form.get('expressions') == 'true'
+    if diatrics:
+        text = remove_diacritics(text)
+        find = remove_diacritics(find)
+    if expressions:
+        flags = re.IGNORECASE if igcase else 0
+        reversed_text = re.sub(find, replace, text, flags=flags)
+    else:
+        reversed_text = text.replace(find, replace)
     return jsonify({'result': reversed_text})
 
 # Remove punctuation route
@@ -104,7 +119,8 @@ def extract_regex():
     text = request.form.get('text')
     pattern = request.form.get('pattern')
     matches = re.findall(pattern, text)
-    return jsonify({'result': matches})
+    reversed_text ='\n'.join(matches)
+    return jsonify({'result': reversed_text})
 
 # Encode base64 route
 @app.route('/api/encode_base64', methods=['POST'])

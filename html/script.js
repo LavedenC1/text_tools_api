@@ -1,4 +1,10 @@
 const base = "https://curious-deane-losbaguettesdeliban-13a647bd.koyeb.app/api";
+const rangeInput = document.getElementById('length');
+const valueDisplay = document.getElementById('length-value');
+rangeInput.addEventListener('input', () => {
+    valueDisplay.textContent = rangeInput.value;
+});
+
 // Yes I am using an API
 
 function sleep(ms) {
@@ -202,6 +208,9 @@ async function findReplace() {
     formData.append("text", document.getElementById("text").value);
     formData.append("find", document.getElementById("tofind").value);
     formData.append("replace", document.getElementById("toreplace").value);
+    formData.append("igcase", document.getElementById("igcase").checked.toString());
+    formData.append("diatrics", document.getElementById("diatrics").checked.toString());
+    formData.append("expressions", document.getElementById("expressions").checked.toString());
 
     const data = await callAPI(url, formData);
     if (data) {
@@ -557,3 +566,36 @@ async function regexer() {
         console.error("Error:", error);
     }
 }
+
+async function passwordGen() {
+    const url = `${base}/password_generator`;
+    const formData = new FormData();
+    formData.append("length", document.getElementById('length').value);
+    if(document.getElementById('upper').checked){
+        formData.append("uppercase", "1");
+    } else {
+        formData.append("uppercase", "0");
+    }
+    if(document.getElementById('lower').checked){
+        formData.append("lowercase", "1");
+    } else {
+        formData.append("lowercase", "0");
+    }
+    if(document.getElementById('special').checked){
+        formData.append("special_chars", "1");
+    } else {
+        formData.append("special_chars", "0");
+    }
+
+    const data = await callAPI(url, formData);
+    if (data) {
+        s_buttonSuccess();
+        document.getElementById("output").value = data.result;
+    } else {
+        s_buttonFailed();
+        document.getElementById("output").value = "Error fetching data. You've probably been rate limited. Try again later.";
+        console.error("Error:", error);
+    }
+}
+
+
