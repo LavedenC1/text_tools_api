@@ -19,11 +19,14 @@ limiter = Limiter(
     key_func=get_remote_address,
     default_limits=["10 per minute"]
 )
-def remove_diacritics(text):
-    # Normalize the text and remove diacritics by using Unicode normalization
-    normalized_text = unicodedata.normalize('NFD', text)
-    return ''.join([c for c in normalized_text if unicodedata.category(c) != 'Mn'])
 
+
+def remove_diacritics(input_str):
+    """Removes diacritics (accents) from a string."""
+    return ''.join(
+        c for c in unicodedata.normalize('NFD', input_str)
+        if unicodedata.category(c) != 'Mn'
+    )
 # Reverse route
 @app.route('/api/reverse', methods=['POST'])
 def reverse_text():
@@ -67,22 +70,40 @@ def get_text_length():
 # Find/replace route
 @app.route('/api/find_replace', methods=['POST'])
 def find_replace():
-    # Get data from the form
-    text = request.form.get('text')
-    find = request.form.get('find')
-    replace = request.form.get('replace')
-    igcase = request.form.get('igcase') == 'true'
-    diatrics = request.form.get('diatrics') == 'true'
-    expressions = request.form.get('expressions') == 'true'
-    if diatrics:
-        text = remove_diacritics(text)
-        find = remove_diacritics(find)
-    if expressions:
-        flags = re.IGNORECASE if igcase else 0
-        reversed_text = re.sub(find, replace, text, flags=flags)
-    else:
-        reversed_text = text.replace(find, replace)
-    return jsonify({'result': reversed_text})
+    try:
+        # Get data from the form
+        text = request.form.get('text', '')
+        find = request.form.get('find', '')
+        replace = request.form.get('replace', '')
+        igcase = request.form.get('igcase', '0') in ['1', 'true', 'True']
+        diatrics = request.form.get('diatrics', '0') in ['1', 'true', 'True']
+        expressions = request.form.get('expressions', '0') in ['1', 'true', 'True']
+
+        # Handle diacritics
+        if diatrics:
+            text = remove_diacritics(text)
+            find = remove_diacritics(find)
+
+        # Perform find-and-replace
+        if expressions:
+            flags = re.IGNORECASE if igcase else 0
+            try:
+                modified_text = re.sub(find, replace, text, flags=flags)
+            except re.error as e:
+                return jsonify({'error': f'Regex error: {str(e)}'}), 400
+        else:
+            if igcase:
+                # Case-insensitive string replace
+                pattern = re.escape(find)
+                modified_text = re.sub(pattern, replace, text, flags=re.IGNORECASE)
+            else:
+                # Regular string replace
+                modified_text = text.replace(find, replace)
+
+        return jsonify({'result': modified_text})
+    except Exception as e:
+        return jsonify({'error': f'Unexpected error: {str(e)}'}), 500
+
 
 # Remove punctuation route
 @app.route('/api/remove_punctuation', methods=['POST'])
